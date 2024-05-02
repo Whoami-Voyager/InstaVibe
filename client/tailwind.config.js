@@ -5,7 +5,19 @@ export default {
     './components/**/*.{html,js}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primaryBlue : '#1c576d',
+        pirmaryGreen: '#1bd686',
+        lightBlue: '#19b2ea',
+        secondaryGreen: '#1ea53a',
+        primaryPink: '#f82ab1',
+        primaryPurple: '#722f9c'
+      },
+      fontFamily: {
+        Instagram: ['Settikef-PersonalUse', 'sans']
+      }
+    },
   },
   plugins: [],
 }

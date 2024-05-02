@@ -9,13 +9,14 @@ import Error from './Components/Error'
 function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userId, setUserId] = useState(0)
 
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Redirect isLoggedIn={isLoggedIn} />} />
-        <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path='/signup' element={<Singup setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path='/' element={<Redirect isLoggedIn={isLoggedIn} userId={userId} />} />
+        <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
+        <Route path='/signup' element={<Singup setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
         <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} />} />
         <Route path='*' element={<Error />} />
       </Routes>
