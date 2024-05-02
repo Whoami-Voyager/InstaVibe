@@ -10,7 +10,7 @@ function Login({ setIsLoggedIn, setUserId }) {
 
     function logIn(e) {
         e.preventDefault()
-        fetch('/api/login', {
+        fetch('/api/users', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -47,13 +47,13 @@ function Login({ setIsLoggedIn, setUserId }) {
         <>
             <div>
                 <img src="/Logo.png" />
-                <h1 className="p-80">InstaVibe</h1>
+                <h1 className="">InstaVibe</h1>
             </div>
             <div>
                 <h2>Welcome to InstaVibe!</h2>
                 <form onSubmit={(e) => logIn(e)}>
                     <h3>Username:</h3>
-                    <input id="username" className="inputs" autoComplete="username" onChange={(e) => setLoginUser(e.target.value)} />
+                    <input id="username" className="border-2" autoComplete="username" onChange={(e) => setLoginUser(e.target.value)} />
                     <h3>Password:</h3>
                     <input id="password" className="inputs" autoComplete="current-password" type="password" onChange={(e) => setLoginPassword(e.target.value)} />
                     <button type="submit">Log In</button>

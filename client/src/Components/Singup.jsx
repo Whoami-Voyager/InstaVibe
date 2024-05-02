@@ -14,7 +14,7 @@ function Singup({ setIsLoggedIn, setUserId }) {
     function createdNewUser(e) {
         e.preventDefault()
         if (userPassword === checkPassword) {
-            fetch('/api/signup', {
+            fetch('/api/users', {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
