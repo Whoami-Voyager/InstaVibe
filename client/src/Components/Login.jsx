@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 
-function Login({ setIsLoggedIn }) {
+function Login({ setIsLoggedIn, setUserId }) {
 
     const [loginUser, setLoginUser] = useState("")
     const [loginPassword, setLoginPassword] = useState("")
@@ -25,9 +25,10 @@ function Login({ setIsLoggedIn }) {
             .then(r => {
                 if (r.ok) {
                     const userId = r.id
+                    setUserId = userId
                     setLoginPassword("")
                     setLoginUser("")
-                    navigate(`user/${userId}`)
+                    navigate(`/user/${userId}`)
                     setIsLoggedIn(true)
                     return r.json()
                 }
@@ -46,15 +47,15 @@ function Login({ setIsLoggedIn }) {
         <>
             <div>
                 <img src="/Logo.png" />
-                <h1>InstaVibe</h1>
+                <h1 className="p-80">InstaVibe</h1>
             </div>
             <div>
                 <h2>Welcome to InstaVibe!</h2>
                 <form onSubmit={(e) => logIn(e)}>
                     <h3>Username:</h3>
-                    <input id="username" autoComplete="username" onChange={(e) => setLoginUser(e.target.value)} />
+                    <input id="username" className="inputs" autoComplete="username" onChange={(e) => setLoginUser(e.target.value)} />
                     <h3>Password:</h3>
-                    <input id="password" autoComplete="current-password" type="password" onChange={(e) => setLoginPassword(e.target.value)} />
+                    <input id="password" className="inputs" autoComplete="current-password" type="password" onChange={(e) => setLoginPassword(e.target.value)} />
                     <button type="submit">Log In</button>
                 </form>
                 <h3>New to Instavibe? <Link to="/signup">Sign Up</Link></h3>
