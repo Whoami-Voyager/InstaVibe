@@ -26,6 +26,7 @@ dist-ssr
 
 .venv
 .env
+Pipfile.lock
 
 migrations
 instance
