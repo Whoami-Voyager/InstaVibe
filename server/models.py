@@ -14,7 +14,15 @@ class User(db.Model, SerializerMixin):
     )
 
     # add serialization rules
-    serialize_rules = ("-interactions.user",)
+    serialize_rules = ("-interactions.user", "-password")
+
+    @property
+    def password_hash(self):
+        return {"Nuh uh"}
+    @password_hash.setter
+    def password_hash(self, word):
+        password_encrypt = bcrypt.generate_password_hash(word.encode('utf-8'))
+        self.password = password_encrypt.decode('utf-8')
 
     def __repr__(self):
         return f"<User {self.username}>"
