@@ -2,10 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-.search{
-    @apply w-3/5 text-center m-9 mb-20 border-2 rounded-lg shadow-lg hover:border-gray-400
+.inputs{
+    @apply border-2 rounded-lg text-center m-3 shadow-md mb-6
 }
 
-.inputs{
-    @apply border-2 rounded-lg text-center m-3 shadow-md
+.inputs-incorrect{
+    @apply border-2 rounded-lg text-center m-3 shadow-md mb-6 border-red-600
 }

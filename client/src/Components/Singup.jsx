@@ -13,7 +13,8 @@ function Singup({ setIsLoggedIn, setUserId }) {
 
     function createdNewUser(e) {
         e.preventDefault()
-        if (userPassword === checkPassword) {
+        if (userPassword === checkPassword && userPassword.length >= 8) {
+            setIncorrectPassword(true)
             fetch('/api/users', {
                 method: "POST",
                 headers: {
@@ -56,35 +57,39 @@ function Singup({ setIsLoggedIn, setUserId }) {
 
     return (
         <>
-            <div>
-                <img src="/Logo.png" />
-                <h1>InstaVibe</h1>
+            <div className="flex mb-24 border-b-2">
+                <img className="w-12 m-6" src="/Logo.png" />
+                <h1 className="text-3xl my-5">InstaVibe</h1>
             </div>
-            <div>
-                <h2>Please type in information to create account:</h2>
-                <form onSubmit={(e) => createdNewUser(e)}>
-                    <h3>Username:</h3>
-                    <input id="username" autoComplete="off" onChange={(e) => setUserName(e.target.value)} />
-                    <h3>Email:</h3>
-                    <input id="email" autoComplete="email" onChange={(e) => setUserEmail(e.target.value)} />
+            <div className="border-2 flex-col rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
+                <h2 className="text-center text-4xl m-8">Please type in information to create account:</h2>
+                <form className="flex items-center flex-col" onSubmit={(e) => createdNewUser(e)}>
+                    <div>
+                        <h3 className="text-center text-xl text-primaryPurple">Username:</h3>
+                        <input className="inputs" id="username" autoComplete="off" onChange={(e) => setUserName(e.target.value)} />
+                    </div>
+                    <div>
+                        <h3 className="text-center text-xl text-primaryPurple">Email:</h3>
+                        <input className="inputs" id="email" autoComplete="email" onChange={(e) => setUserEmail(e.target.value)} />
+                    </div>
                     {incorrectPassword
                         ?
                         <>
-                            <h3>Password:</h3>
-                            <input id="password" type="password" autoComplete="new-password" onChange={(e) => setUserPassword(e.target.value)} />
-                            <h3>Verify Password:</h3>
-                            <input id="verifyPassword" type="password" autoComplete="new-password" onChange={(e) => setCheckPassword(e.target.value)} />
-                            <button type="submit">Sign Up</button>
+                            <h3 className="text-center text-xl text-primaryPurple">Password:</h3>
+                            <input className="inputs" id="password" type="password" autoComplete="new-password" onChange={(e) => setUserPassword(e.target.value)} />
+                            <h3 className="text-center text-xl text-primaryPurple">Verify Password:</h3>
+                            <input className="inputs" id="verifyPassword" type="password" autoComplete="new-password" onChange={(e) => setCheckPassword(e.target.value)} />
+                            <button className="bg-lightBlue hover:bg-blue-500 shadow-xl text-white font-bold py-2 px-4 m-6 rounded" type="submit">Sign Up</button>
                         </>
                         :
                         <>
-                            <h3>Password:</h3>
-                            <input id="password" type="password" autoComplete="new-password" onChange={(e) => setUserPassword(e.target.value)} />
-                            <h4>Passwords are not the same. Please re-enter password</h4>
-                            <h3>Verify Password:</h3>
-                            <input id="verifyPassword" type="password" autoComplete="new-password" onChange={(e) => setCheckPassword(e.target.value)} />
-                            <h4>Passwords are not the same. Please re-enter password</h4>
-                            <button type="submit">Sign Up</button>
+                            <h3 className="text-center text-xl text-primaryPurple">Password:</h3>
+                            <input className="inputs-incorrect" id="password" type="password" autoComplete="new-password" onChange={(e) => setUserPassword(e.target.value)} />
+                            <h4 className="m-4">Passwords are not the same. Please re-enter password</h4>
+                            <h3 className="text-center text-xl text-primaryPurple">Verify Password:</h3>
+                            <input className="inputs-incorrect" id="verifyPassword" type="password" autoComplete="new-password" onChange={(e) => setCheckPassword(e.target.value)} />
+                            <h4 className="m-4">Passwords are not the same. Please re-enter password</h4>
+                            <button className="bg-lightBlue hover:bg-blue-500 shadow-xl text-white font-bold py-2 px-4 m-6 rounded" type="submit">Sign Up</button>
                         </>
                     }
                 </form>
