@@ -10,7 +10,7 @@ function Post() {
 
     return (
         <div>
-            <img src="/Profile.webp" />
+            <img className="rounded-full h-24 w-24 object-cover" src="/Profile.webp" />
             <h2>Username</h2>
             <img src="https://imageio.forbes.com/specials-images/imageserve/6552427075f8cabe3a24d6f1/0x0.jpg?format=jpg&height=900&width=1600&fit=bounds" />
             <p>caption</p>
@@ -21,7 +21,7 @@ function Post() {
                 <img src="/heartLiked.png" onClick={() => setLike(true)} />
             }
             <img src="/chat.png" onClick={(e) => showComments(e)} />
-            <input placeholder="Add Comment"/>
+            <input id="comment" placeholder="Add Comment"/>
         </div>
     )
 }
