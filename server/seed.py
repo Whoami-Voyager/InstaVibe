@@ -5,8 +5,11 @@ from models import db, User, Post, Interaction
 
 with app.app_context():
 
+<<<<<<< HEAD
     # This will delete any existing rows
     # so you can run the seed file multiple times without having duplicate entries in your database
+=======
+>>>>>>> origin/dev
     print("Deleting data...")
     Post.query.delete()
     User.query.delete()
@@ -37,4 +40,8 @@ with app.app_context():
     db.session.add_all(interactions)
     db.session.commit()
 
+<<<<<<< HEAD
     print("Seeding done!")
+=======
+    print("Seeding done!")
+>>>>>>> origin/dev

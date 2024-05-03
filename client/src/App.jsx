@@ -1,34 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Redirect from './Components/Redirect'
+import Login from './Components/Login'
+import User from './Components/User'
+import Singup from './Components/Singup'
+import Error from './Components/Error'
 
 function App() {
-  const [count, setCount] = useState(0)
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [userId, setUserId] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Redirect isLoggedIn={isLoggedIn} userId={userId} />} />
+        <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
+        <Route path='/signup' element={<Singup setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
+        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path='*' element={<Error />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
