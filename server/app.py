@@ -1,4 +1,5 @@
 from services import *
+from models import *
 
 @app.route("/")
 def index():
@@ -88,11 +89,11 @@ class UserClass(Resource):
 
             return make_response(new_user.to_dict(), 201)
         except ValueError:
-            return make_response({"errors": ["validation errors"]}, 400)
-    
+            return make_response({"errors": ["validation errors"]}, 400)    
 
 
 api.add_resource(UserClass, "/users")
+
 
 class UserById(Resource):
     def get(self, id):
@@ -131,10 +132,29 @@ class UserById(Resource):
         return make_response(user.to_dict(), 200)
 
 
-
 api.add_resource(UserById, "/user/<int:id>")
 
+class Login(Resource):
+    def post(self):
+        try:
+            data = request.get_json()
+            user = User.query.filter(User.username == data["username"]).first()
+            if user:
+                if user.check_password(data['password']):
+                    session["user_id"] = user.id
+                    return user.to_dict(), 201
+                else:
+                    return {"error":"Not valid password"},400
+            else:
+                return {"error":"Not valid username"},400
+        except Exception as e:
+            print(e)
 
+    def delete(self):
+        session.pop('user_id')
+        return {}, 204
+
+api.add_resource(Login, "/login")
 
 class Interactions(Resource):
     def post(self):
@@ -151,8 +171,6 @@ class Interactions(Resource):
             return make_response(newInteraction.to_dict(), 201)
         except ValueError:
             return make_response({"errors": ["validation errors"]}, 400)
-    
-
 
 api.add_resource(Interactions, "/interactions")
 

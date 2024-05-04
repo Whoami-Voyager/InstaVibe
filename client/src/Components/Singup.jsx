@@ -85,10 +85,10 @@ function Singup({ setIsLoggedIn, setUserId }) {
                         <>
                             <h3 className="text-center text-xl text-primaryPurple">Password:</h3>
                             <input className="inputs-incorrect" id="password" type="password" autoComplete="new-password" onChange={(e) => setUserPassword(e.target.value)} />
-                            <h4 className="m-4">Passwords are not the same. Please re-enter password</h4>
+                            <h4 className="m-4">Passwords are not the same or must be at least 8 characters in length. Please re-enter password</h4>
                             <h3 className="text-center text-xl text-primaryPurple">Verify Password:</h3>
                             <input className="inputs-incorrect" id="verifyPassword" type="password" autoComplete="new-password" onChange={(e) => setCheckPassword(e.target.value)} />
-                            <h4 className="m-4">Passwords are not the same. Please re-enter password</h4>
+                            <h4 className="m-4">Passwords are not the same or must be at least 8 characters in length. Please re-enter password</h4>
                             <button className="bg-lightBlue hover:bg-blue-500 shadow-xl text-white font-bold py-2 px-4 m-6 rounded" type="submit">Sign Up</button>
                         </>
                     }

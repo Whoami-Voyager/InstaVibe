@@ -10,7 +10,7 @@ function Login({ setIsLoggedIn, setUserId }) {
 
     function logIn(e) {
         e.preventDefault()
-        fetch('/api/users', {
+        fetch('/api/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -24,17 +24,24 @@ function Login({ setIsLoggedIn, setUserId }) {
         })
             .then(r => {
                 if (r.ok) {
-                    const userId = r.id
-                    setUserId = userId
-                    setLoginPassword("")
-                    setLoginUser("")
-                    navigate(`/user/${userId}`)
-                    setIsLoggedIn(true)
                     return r.json()
                 }
                 else {
                     alert("Not Valid Login")
                     return undefined
+                }
+            })
+            .then(data => {
+                if (data === undefined) {
+                    alert("Something went wrong. Please try again.")
+                }
+                else {
+                    const userId = data.id
+                    setUserId(userId)
+                    setLoginPassword("")
+                    setLoginUser("")
+                    navigate(`/user/${userId}`)
+                    setIsLoggedIn(true)
                 }
             })
             .catch(error => {

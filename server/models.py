@@ -6,7 +6,7 @@ class User(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String)
     email = db.Column(db.String)
-    password = db.Column(db.String)
+    _password = db.Column(db.String)
 
     # add relationship
     interactions = db.relationship(
@@ -14,15 +14,18 @@ class User(db.Model, SerializerMixin):
     )
 
     # add serialization rules
-    serialize_rules = ("-interactions.user", "-password")
+    serialize_rules = ("-interactions.user", "-_password")
 
-    @property
-    def password_hash(self):
-        return {"Nuh uh"}
-    @password_hash.setter
-    def password_hash(self, word):
+    @hybrid_property
+    def password(self):
+        return self._password
+    @password.setter
+    def password(self, word):
         password_encrypt = bcrypt.generate_password_hash(word.encode('utf-8'))
-        self.password = password_encrypt.decode('utf-8')
+        self._password = password_encrypt.decode('utf-8')
+
+    def check_password(self, word):
+        return bcrypt.check_password_hash(self._password, word.encode('utf-8'))
 
     def __repr__(self):
         return f"<User {self.username}>"

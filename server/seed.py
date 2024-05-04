@@ -1,4 +1,5 @@
 from services import *
+from models import *
 
 with app.app_context():
 
@@ -8,9 +9,9 @@ with app.app_context():
     Interaction.query.delete()
 
     print("Creating Users...")
-    Tony = User(username="Tony", email='tony@email.com', password='password')
-    James = User(username="James", email='james@email.com', password='password')
-    Mike = User(username="Mike", email='mike@email.com', password='password')
+    Tony = User(username="Tony", email='tony@email.com', password='thequickbrownfoxjumpsoverthelazydog')
+    James = User(username="James", email='james@email.com', password='thequickbrownfoxjumpsoverthelazydog')
+    Mike = User(username="Mike", email='mike@email.com', password='thequickbrownfoxjumpsoverthelazydog')
     users = [Tony, James, Mike]
 
     print("Creating Posts...")
