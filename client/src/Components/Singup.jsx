@@ -57,12 +57,12 @@ function Singup({ setIsLoggedIn, setUserId }) {
 
     return (
         <>
-            <div className="flex mb-24 border-b-2">
+            <div className="flex mb-16 border-b-2">
                 <img className="w-12 m-6" src="/Logo.png" />
-                <h1 className="text-3xl my-5">InstaVibe</h1>
+                <h1 className="font-Instagram text-3xl my-5">InstaVibe</h1>
             </div>
-            <div className="border-2 flex-col rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
-                <h2 className="text-center text-4xl m-8">Please type in information to create account:</h2>
+            <div className="font-Body border-2 flex-col mx-32 rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
+                <h2 className="font-Head animate-colorAnimation text-center text-4xl m-8">Please type in information to create account:</h2>
                 <form className="flex items-center flex-col" onSubmit={(e) => createdNewUser(e)}>
                     <div>
                         <h3 className="text-center text-xl text-primaryPurple">Username:</h3>

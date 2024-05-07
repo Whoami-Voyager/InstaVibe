@@ -44,20 +44,16 @@ function Login({ setIsLoggedIn, setUserId }) {
                     setIsLoggedIn(true)
                 }
             })
-            .catch(error => {
-                alert("Something went wrong. Please try again.")
-                console.error('Login failed:', error)
-            })
     }
 
     return (
         <>
             <div className="flex mb-24 border-b-2">
                 <img className="w-12 m-6" src="/Logo.png" />
-                <h1 className="text-3xl my-5">InstaVibe</h1>
+                <h1 className="font-Instagram  text-3xl my-5">InstaVibe</h1>
             </div>
-            <div className="border-2 flex-col rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
-                <h2 className="text-center text-4xl m-8">Welcome to InstaVibe!</h2>
+            <div className="border-2 font-Body flex-col mx-32 rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
+                <h2 className="font-Head text-center text-4xl m-8 animate-colorAnimation">Welcome to InstaVibe</h2>
                 <form className="flex items-center flex-col" onSubmit={(e) => logIn(e)}>
                     <div>
                         <h3 className="text-center text-xl text-primaryPurple">Username:</h3>

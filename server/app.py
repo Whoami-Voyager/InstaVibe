@@ -156,6 +156,16 @@ class Login(Resource):
 
 api.add_resource(Login, "/login")
 
+class Session(Resource):
+    def get(self):
+        if session.get("user_id"):
+            user = User.query.filter(User.id == session.get("user_id")).first()
+            return user.to_dict()
+        else:
+            return {"Not logged in"}, 401
+
+api.add_resource(Session, "/session")
+
 class Interactions(Resource):
     def post(self):
         try:

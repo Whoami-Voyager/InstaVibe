@@ -2,10 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-.inputs{
+.inputs {
     @apply border-2 rounded-lg text-center m-3 shadow-md mb-6
 }
 
-.inputs-incorrect{
+.inputs-incorrect {
     @apply border-2 rounded-lg text-center m-3 shadow-md mb-6 border-red-600
+}
+
+@font-face {
+    font-family: 'Fontspring';
+    src: url(/Fontspring.otf);
+}
+
+@font-face {
+    font-family: 'IGhead';
+    src: url(/Instagram-Headline.otf);
+}
+
+@font-face {
+    font-family: 'IGsans';
+    src: url(/Instagram-Sans.ttf);
 }
