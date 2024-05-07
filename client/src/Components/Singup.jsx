@@ -30,20 +30,22 @@ function Singup({ setIsLoggedIn, setUserId }) {
             })
                 .then(r => {
                     if (r.ok) {
-                        const userId = r.id
-                        setUserId = userId
-                        setUserName("")
-                        setUserEmail("")
-                        setUserPassword("")
-                        setCheckPassword("")
-                        navigate(`/user/${userId}`)
-                        setIsLoggedIn(true)
                         return r.json()
                     }
                     else {
                         alert("Not Valid Login")
                         return undefined
                     }
+                })
+                .then(data => {
+                    const userId = data.id
+                    setUserId(userId)
+                    setUserName("")
+                    setUserEmail("")
+                    setUserPassword("")
+                    setCheckPassword("")
+                    navigate(`/user/${userId}`)
+                    setIsLoggedIn(true)
                 })
                 .catch(error => {
                     alert("Something went wrong. Please try again.")

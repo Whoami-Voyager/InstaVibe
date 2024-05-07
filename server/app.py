@@ -158,11 +158,16 @@ api.add_resource(Login, "/login")
 
 class Session(Resource):
     def get(self):
-        if session.get("user_id"):
-            user = User.query.filter(User.id == session.get("user_id")).first()
-            return user.to_dict()
-        else:
-            return {"Not logged in"}, 401
+        try:
+            if session.get("user_id"):
+                user = User.query.filter(User.id == session.get("user_id")).first()
+                return user.to_dict()
+            else:
+                return make_response({"error": "Not logged in"}, 401)
+        except Exception as e:
+            print(e)
+            return make_response({"error": "Internal Server Error"}, 500)
+
 
 api.add_resource(Session, "/session")
 

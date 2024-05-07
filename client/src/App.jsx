@@ -13,14 +13,14 @@ function App() {
 
   console.log(isLoggedIn)
 
-  useEffect(() => {
-    fetch('/api/session')
-      .then(r => r.json())
-      .then(data => {
-        setUserId(data['id'])
-        setIsLoggedIn(!isLoggedIn)
-      })
-  }, [])
+  // useEffect(() => {
+  //   fetch('/api/session')
+  //     .then(r => r.json())
+  //     .then(data => {
+  //       setUserId(data['id'])
+  //       setIsLoggedIn(!isLoggedIn)
+  //     })
+  // }, [])
 
   return (
     <BrowserRouter>
@@ -28,7 +28,7 @@ function App() {
         <Route path='/' element={<Redirect isLoggedIn={isLoggedIn} userId={userId} />} />
         <Route path='/login' element={<Login setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
         <Route path='/signup' element={<Singup setIsLoggedIn={setIsLoggedIn} setUserId={setUserId} />} />
-        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} />} />
+        <Route path='/user/:id' element={<User setIsLoggedIn={setIsLoggedIn} userId={userId} setUserId={setUserId} />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
