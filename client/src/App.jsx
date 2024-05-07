@@ -13,14 +13,25 @@ function App() {
 
   console.log(isLoggedIn)
 
-  // useEffect(() => {
-  //   fetch('/api/session')
-  //     .then(r => r.json())
-  //     .then(data => {
-  //       setUserId(data['id'])
-  //       setIsLoggedIn(!isLoggedIn)
-  //     })
-  // }, [])
+  useEffect(() => {
+    fetch('/api/session')
+      .then(response => {
+        if (response.ok) {
+          setIsLoggedIn(true);
+          return response.json();
+        } else {
+          setIsLoggedIn(false);
+        }
+      })
+      .then(data => {
+        if (data !== undefined) {
+          setUserId(data['id']);
+        }
+      })
+      .catch(error => {
+        console.error('Session check failed:', error);
+      });
+  }, []);
 
   return (
     <BrowserRouter>

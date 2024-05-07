@@ -24,9 +24,9 @@ with app.app_context():
 
     print("Creating Interactions...")
 
-    i1 = Interaction(user=Tony, post=Tonysail, comment="comment1", like=False)
-    i2 = Interaction(user=James, post=Jamesrun, comment="comment2", like=True)
-    i3 = Interaction(user=Mike, post=Mikedinner, comment="comment3", like=True)
+    i1 = Interaction(user=Tony, post=Mikedinner, comment="Nice Car", like=False)
+    i2 = Interaction(user=James, post=Tonysail, comment="Ferrari. I Like", like=True)
+    i3 = Interaction(user=Mike, post=Jamesrun, comment="Vroom Vroom", like=True)
     interactions = [i1, i2, i3]
     db.session.add_all(users)
     db.session.add_all(posts)

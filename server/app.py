@@ -84,6 +84,7 @@ class UserClass(Resource):
                 email=request.get_json()["email"],
                 password=request.get_json()["password"],
             )
+            session["user_id"] = new_user.id
             db.session.add(new_user)
             db.session.commit()
 

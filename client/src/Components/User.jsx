@@ -64,6 +64,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                 </div>
             </div>
             {postCard}
+
         </>
     )
 }

@@ -1,15 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Post({ post, username }) {
     const [like, setLike] = useState(true);
+    const [comment, showComment] = useState(true);
+    const [interaction, setInteraction] = useState([]);
+
+    useEffect(() => {
+        fetch(`/api/post/${post.id}`)
+            .then(r => r.json())
+            .then(data => {
+                setInteraction(data['interactions']);
+            })
+            .catch(error => console.error('Error fetching interactions:', error));
+    }, [post.id]);
+
+    console.log(interaction)
 
     function showComments(e) {
-        console.log(e);
+        e.preventDefault();
+        showComment((prevcom) => !prevcom);
     }
 
     function updateLike(e) {
-        setLike((prevLike) => !prevLike)
-        console.log(e)
+        setLike((prevLike) => !prevLike);
+        console.log(e);
     }
 
     return (
@@ -28,6 +42,10 @@ function Post({ post, username }) {
                     <img className="w-12 m-3" src="/chat.png" onClick={(e) => showComments(e)} />
                 </div>
                 <p className="m-4 text-2xl">{post.caption}</p>
+                {comment
+                    ? <></>
+                    : <p className="m-4">{interaction[0]?.user?.username}: {interaction[0]?.comment}</p>
+                }
                 <input className="border-2 rounded-lg text-center m-3 shadow-md mb-6" id="comment" placeholder="Add Comment" />
             </div>
         </div>
