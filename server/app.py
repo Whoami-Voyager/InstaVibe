@@ -188,6 +188,37 @@ class Interactions(Resource):
         except ValueError:
             return make_response({"errors": ["validation errors"]}, 400)
 
+    def get(self, interaction_id):
+        interaction = Interaction.query.get(interaction_id)
+        if interaction:
+            return make_response(interaction.to_dict(), 200)
+        else:
+            return make_response({"error": "Interaction not found"}, 404)
+
+    def patch(self, interaction_id):
+        interaction = Interaction.query.get(interaction_id)
+        # interaction = interaction.query.filter_by(id=id).one_or_none()
+        data = request.get_json()
+        if interaction:
+            try:
+                # Update the interaction properties
+                if "comment" in data:
+                    interaction.comment = data["comment"]
+                if "like" in data:
+                    interaction.like = data["like"]
+                if "user_id" in data:
+                    interaction.user_id = data["user_id"]
+                if "post_id" in data:
+                    interaction.post_id = data["post_id"]
+
+                db.session.commit()
+                return make_response(interaction.to_dict(), 200)
+            except ValueError:
+                return make_response({"errors": ["validation errors"]}, 400)
+        else:
+            return make_response({"error": "Interaction not found"}, 404)
+    
+
 api.add_resource(Interactions, "/interactions")
 
 if __name__ == "__main__":
