@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Post from "./Post"
+import SocialMediaForm from "./SocialMediaForm"
 
 function User({ setIsLoggedIn, userId, setUserId }) {
 
     const [userData, setUserData] = useState("")
     const [otherUser, setOtherUser] = useState([])
     const [posts, setPosts] = useState([])
+    const [newPost, setNewPost] = useState(undefined)
 
     const navigate = useNavigate()
 
@@ -56,6 +58,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                 <input className="w-3/5 text-center m-9 my-14 border-2 rounded-lg shadow-lg hover:border-gray-400" id="search" autoComplete="off" placeholder="Search 🔎" />
                 <button className="m-16 shadow-xl rounded-3xl text-white bg-lightBlue hover:bg-blue-500 w-24 text-center" onClick={() => handleLogOut()}>Logout</button>
             </div>
+           <SocialMediaForm setNewPost={setNewPost} /> 
             <div className="flex gap-12 font-Body border-b-4 border-black">
                 <img className="my-12 ml-32 rounded-full h-36 w-36 object-cover" src="/Profile.webp" />
                 <div className="flex-col p-4">
@@ -64,6 +67,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                 </div>
             </div>
             {postCard}
+            {newPost && <Post post={newPost} username={userData.username} />}
 
         </>
     )
