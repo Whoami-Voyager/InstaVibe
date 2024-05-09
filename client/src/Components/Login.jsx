@@ -48,9 +48,9 @@ function Login({ setIsLoggedIn, setUserId }) {
 
     return (
         <>
-            <div className="flex mb-24 border-b-2">
+            <div className="flex select-none mb-24 border-b-2">
                 <img className="w-12 m-6" src="/Logo.png" />
-                <h1 className="font-Instagram select-none text-3xl my-5">InstaVibe</h1>
+                <h1 className="font-Instagram text-3xl my-5">InstaVibe</h1>
             </div>
             <div className="border-2 font-Body flex-col mx-32 rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
                 <h2 className="font-Head text-center select-none text-4xl m-8 animate-colorAnimation">Welcome to InstaVibe</h2>

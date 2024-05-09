@@ -59,9 +59,9 @@ function Singup({ setIsLoggedIn, setUserId }) {
 
     return (
         <>
-            <div className="flex mb-16 border-b-2">
+            <div className="flex select-none mb-16 border-b-2">
                 <img className="w-12 m-6" src="/Logo.png" />
-                <h1 className="font-Instagram select-none text-3xl my-5">InstaVibe</h1>
+                <h1 className="font-Instagram text-3xl my-5">InstaVibe</h1>
             </div>
             <div className="font-Body border-2 flex-col mx-32 rounded-3xl bg-white bg-opacity-25 backdrop-blur-lg shadow-lg p-6">
                 <h2 className="font-Head select-none animate-colorAnimation text-center text-4xl m-8">Please type in information to create account:</h2>
