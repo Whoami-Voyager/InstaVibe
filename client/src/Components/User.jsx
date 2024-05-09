@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Post from "./Post"
+<<<<<<< HEAD
 import SocialMediaForm from "./SocialMediaForm"
+=======
+import Search from "./Search"
+>>>>>>> dev
 
 function User({ setIsLoggedIn, userId, setUserId }) {
 
@@ -13,13 +17,6 @@ function User({ setIsLoggedIn, userId, setUserId }) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (userId) {
-            fetch(`/api/user/${userId}`)
-                .then(r => r.json())
-                .then(data => {
-                    setUserData(data)
-                })
-        }
         fetch('/api/posts')
             .then(r => r.json())
             .then(info => {
@@ -29,6 +26,10 @@ function User({ setIsLoggedIn, userId, setUserId }) {
             .then(r => r.json())
             .then(users => {
                 const filteredUsers = users.filter(user => user.id !== userId)
+                const currentUser = users.filter(user => user.id == userId)
+                currentUser.map(user => {
+                    setUserData(user)
+                })
                 setOtherUser(filteredUsers)
             })
     }, [userId])
@@ -47,15 +48,15 @@ function User({ setIsLoggedIn, userId, setUserId }) {
     })
 
     const postCard = post.map((post) => {
-        return <Post key={post.id} post={post} username={userData.username} />
+        return <Post key={post.id} post={post} userId={userId} username={userData.username} />
     })
 
     return (
         <>
             <div className="flex font-Body justify-between mb-16">
                 <img className="w-24 m-6" src="/Logo.png" />
-                <h1 className="font-Instagram text-3xl my-12">InstaVibe</h1>
-                <input className="w-3/5 text-center m-9 my-14 border-2 rounded-lg shadow-lg hover:border-gray-400" id="search" autoComplete="off" placeholder="Search 🔎" />
+                <h1 className="font-Instagram select-none text-3xl my-12">InstaVibe</h1>
+                <Search otherUser={otherUser}/>
                 <button className="m-16 shadow-xl rounded-3xl text-white bg-lightBlue hover:bg-blue-500 w-24 text-center" onClick={() => handleLogOut()}>Logout</button>
             </div>
            <SocialMediaForm setNewPost={setNewPost} /> 
@@ -67,8 +68,11 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                 </div>
             </div>
             {postCard}
+<<<<<<< HEAD
             {newPost && <Post post={newPost} username={userData.username} />}
 
+=======
+>>>>>>> dev
         </>
     )
 }

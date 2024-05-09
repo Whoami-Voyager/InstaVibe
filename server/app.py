@@ -188,16 +188,25 @@ class Interactions(Resource):
         except ValueError:
             return make_response({"errors": ["validation errors"]}, 400)
 
-    def get(self, interaction_id):
-        interaction = Interaction.query.get(interaction_id)
+    def get(self):
+        interaction = Interaction.query.get()
         if interaction:
             return make_response(interaction.to_dict(), 200)
         else:
             return make_response({"error": "Interaction not found"}, 404)
 
-    def patch(self, interaction_id):
-        interaction = Interaction.query.get(interaction_id)
-        # interaction = interaction.query.filter_by(id=id).one_or_none()
+api.add_resource(Interactions, "/interactions")
+
+class InteractionByID(Resource):
+    def get(self, id):
+        interaction = Interaction.query.get(id)
+        if interaction:
+            return make_response(interaction.to_dict(), 200)
+        else:
+            return make_response({"error": "Interaction not found"}, 404)
+
+    def patch(self, id):
+        interaction = Interaction.query.get(id)
         data = request.get_json()
         if interaction:
             try:
@@ -217,9 +226,8 @@ class Interactions(Resource):
                 return make_response({"errors": ["validation errors"]}, 400)
         else:
             return make_response({"error": "Interaction not found"}, 404)
-    
 
-api.add_resource(Interactions, "/interactions")
+api.add_resource(InteractionByID, "/interactions/<int:id>")
 
 if __name__ == "__main__":
     app.run(port=5555, debug=True)

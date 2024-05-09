@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryBlue : '#1c576d',
+        primaryBlue: '#1c576d',
         pirmaryGreen: '#1bd686',
         lightBlue: '#19b2ea',
         secondaryGreen: '#1ea53a',
@@ -28,12 +28,12 @@ export default {
           '57.1429%': { color: '#f82ab1' },
           '71.4286%': { color: '#722f9c' },
           '85.7143%': { color: '#1c576d' },
-          '100%': { color: '#1c576d' },
+          '100%': { color: '#1c576d' }
         },
       },
       animation: {
-        colorAnimation: 'colorAnimation 10s linear infinite',
-      },
+        colorAnimation: 'colorAnimation 10s linear infinite'
+      }
     },
   },
   plugins: [],
