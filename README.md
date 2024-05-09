@@ -49,25 +49,20 @@
    git clone git@github.com:Whoami-Voyager/InstaVibe.git
    ```
 
-2. Navigate to the backend directory:
 
-   ```bash
-   cd server
-   ```
-
-3. Install dependencies:
+2. Install dependencies:
 
    ```bash
    pipenv install
    ```
 
-4. Activate the virtual environment:
+3. Activate the virtual environment:
 
    ```bash
    pipenv shell
    ```
 
-5. Set up the database:
+4. Set up the database:
 
    ```bash
    export FLASK_APP=app.py
@@ -75,6 +70,12 @@
    flask db init
    flask db migrate -m 'Create tables'
    flask db upgrade
+   ```
+
+5. Navigate to the backend directory:
+
+   ```bash
+   cd server
    ```
 
 6. Run the Flask application:
