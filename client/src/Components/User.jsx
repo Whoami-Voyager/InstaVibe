@@ -1,11 +1,8 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import Post from "./Post"
-<<<<<<< HEAD
 import SocialMediaForm from "./SocialMediaForm"
-=======
 import Search from "./Search"
->>>>>>> dev
 
 function User({ setIsLoggedIn, userId, setUserId }) {
 
@@ -68,11 +65,7 @@ function User({ setIsLoggedIn, userId, setUserId }) {
                 </div>
             </div>
             {postCard}
-<<<<<<< HEAD
             {newPost && <Post post={newPost} username={userData.username} />}
-
-=======
->>>>>>> dev
         </>
     )
 }
