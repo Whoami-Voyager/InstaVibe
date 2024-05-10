@@ -97,20 +97,6 @@ const SocialMediaForm = ({ setNewPost}) => {
           Submit
         </button>
       </form>
-
-      {/* {submittedData && (
-        <div className="mt-4">
-          <h2 className="text-xl font-semibold mb-2">Submitted Data</h2>
-          <div className="flex items-center">
-            <img
-              src={submittedData.image_url}
-              alt="Submitted"
-              className="max-w-xs"
-            />
-            <p className="ml-4">{submittedData.caption}</p>
-          </div>
-        </div>
-      )} */}
     </div>
   );
 };
